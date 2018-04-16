@@ -7,15 +7,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class PalindromTest {
+	PalindromeExample palindromeTester = new PalindromeExample();
+	
 	@Test
 	public void whenPalindrom_thenAccept() {
-	    PalindromeExample palindromeTester = new PalindromeExample();
 	    assertTrue(palindromeTester.isPalindrome("noon"));
 	}
 	     
 	@Test
 	public void whenNearPalindrom_thanReject(){
-	    PalindromeExample palindromeTester = new PalindromeExample();
 	    assertFalse(palindromeTester.isPalindrome("sir"));
 	}
 	
@@ -30,4 +30,13 @@ public class PalindromTest {
 //	    PalindromeExample palindromeTester = new PalindromeExample();
 //	    assertFalse(palindromeTester.isPalindrome("abcdef"));
 //	}
+	
+	@Test
+    public void shouldRecognizeTwoCharacterPalindrome() {
+        assertEquals(true, palindromeTester.isPalindrome("aa"));
+    }
+	@Test
+    public void RepeatRecognizeTwoCharacterPalindrome() {
+        assertEquals(true, palindromeTester.isPalindrome("aa"));
+    }
 }
