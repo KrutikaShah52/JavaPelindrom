@@ -1,6 +1,0 @@
-projectKey=com.test:Jacoco-Maven-Example
-serverUrl=http://localhost:9000
-serverVersion=6.4.0.25310
-dashboardUrl=http://localhost:9000/dashboard/index/com.test:Jacoco-Maven-Example
-ceTaskId=AWK-qVTM9Zo1LKKmh_JS
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWK-qVTM9Zo1LKKmh_JS
