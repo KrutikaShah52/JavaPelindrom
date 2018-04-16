@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.75" branch-rate="0.8333333333333334" lines-covered="9" lines-valid="12" branches-covered="5" branches-valid="6" complexity="2.0" version="2.1.1" timestamp="1523611086927">
+<coverage line-rate="0.75" branch-rate="0.8333333333333334" lines-covered="9" lines-valid="12" branches-covered="5" branches-valid="6" complexity="2.0" version="2.1.1" timestamp="1523616526035">
 	<sources>
 		<source>--source</source>
 		<source>/home/krutika/eclipse-workspace/Jacoco-Maven-Example/target/generated-sources/annotations</source>
