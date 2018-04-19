@@ -17,15 +17,6 @@
     <cobertura.skip>false</cobertura.skip>
     <sonar.host.url>http://localhost:9000/</sonar.host.url>
     <sonar.exclusions></sonar.exclusions>
-    <sonar.sources>src/main</sonar.sources>
-	<sonar.tests>src/test</sonar.tests>
-	<!-- Below property indicates the pattern of the test suite -->
-	<runSuite>**/*Suite.class</runSuite>
-	<!-- Sonar-JaCoCo properties -->
-	<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-	<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-	<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
-	<sonar.language>java</sonar.language>        
   </properties>
   
   <dependencies>
@@ -50,7 +41,7 @@
 	</dependency>
   </dependencies>
 	  
-	<build> 
+ 	<build> 
 	 	<plugins>
 	 		<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -66,7 +57,6 @@
 			    <version>0.7.7.201606060606</version>
 			    <configuration>
 			    	<output>file</output>
-			    	<destFile>${sonar.jacoco.reportPath}</destFile>
 			        <append>true</append>
 	      		</configuration>
 			    <executions>
@@ -105,18 +95,18 @@
 	               </execution>
 	           </executions>
 	        </plugin>
-					<!-- Tomcat plugin 
-					<plugin>  
-						 <groupId>org.apache.tomcat.maven</groupId>  
-						 <artifactId>tomcat8-maven-plugin</artifactId>  
-						 <version>2.2</version>  
-						 <configuration>  
-							<url>http://localhost:9090/manager.text</url>  
-						  	<server>TomcatServer</server>
-						  	<username>admin</username>  
-						  	<password>password</password>   
-						 </configuration>   
-					</plugin>-->      
+		<!-- Tomcat plugin 
+		<plugin>  
+			 <groupId>org.apache.tomcat.maven</groupId>  
+			 <artifactId>tomcat8-maven-plugin</artifactId>  
+			 <version>2.2</version>  
+			 <configuration>  
+				<url>http://localhost:9090/manager.text</url>  
+			  	<server>TomcatServer</server>
+			  	<username>admin</username>  
+			  	<password>password</password>   
+			 </configuration>   
+		</plugin>-->      
 			<plugin>
 	        	<groupId>org.sonarsource.scanner.maven</groupId>
 	        	<artifactId>sonar-maven-plugin</artifactId>
@@ -138,6 +128,6 @@
 					</resources>
 				</configuration>
 			</plugin>
-		</plugins>
+	    </plugins>
 	</build>
 </project>
