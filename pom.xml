@@ -17,6 +17,15 @@
     <cobertura.skip>false</cobertura.skip>
     <sonar.host.url>http://localhost:9000/</sonar.host.url>
     <sonar.exclusions></sonar.exclusions>
+    <sonar.sources>src/main</sonar.sources>
+	<sonar.tests>src/test</sonar.tests>
+	<!-- Below property indicates the pattern of the test suite -->
+	<runSuite>**/*Suite.class</runSuite>
+	<!-- Sonar-JaCoCo properties -->
+	<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+	<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+	<sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+	<sonar.language>java</sonar.language>        
   </properties>
   
   <dependencies>
@@ -41,7 +50,11 @@
 	</dependency>
   </dependencies>
 	  
+<<<<<<< HEAD
  	<build> 
+=======
+	<build> 
+>>>>>>> 0a3c5ef07d8617d134322f319caf35e11d6883cc
 	 	<plugins>
 	 		<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -57,6 +70,10 @@
 			    <version>0.7.7.201606060606</version>
 			    <configuration>
 			    	<output>file</output>
+<<<<<<< HEAD
+=======
+			    	<destFile>${sonar.jacoco.reportPath}</destFile>
+>>>>>>> 0a3c5ef07d8617d134322f319caf35e11d6883cc
 			        <append>true</append>
 	      		</configuration>
 			    <executions>
@@ -95,6 +112,7 @@
 	               </execution>
 	           </executions>
 	        </plugin>
+<<<<<<< HEAD
 		<!-- Tomcat plugin 
 		<plugin>  
 			 <groupId>org.apache.tomcat.maven</groupId>  
@@ -107,6 +125,20 @@
 			  	<password>password</password>   
 			 </configuration>   
 		</plugin>-->      
+=======
+					<!-- Tomcat plugin 
+					<plugin>  
+						 <groupId>org.apache.tomcat.maven</groupId>  
+						 <artifactId>tomcat8-maven-plugin</artifactId>  
+						 <version>2.2</version>  
+						 <configuration>  
+							<url>http://localhost:9090/manager.text</url>  
+						  	<server>TomcatServer</server>
+						  	<username>admin</username>  
+						  	<password>password</password>   
+						 </configuration>   
+					</plugin>-->      
+>>>>>>> 0a3c5ef07d8617d134322f319caf35e11d6883cc
 			<plugin>
 	        	<groupId>org.sonarsource.scanner.maven</groupId>
 	        	<artifactId>sonar-maven-plugin</artifactId>
@@ -128,6 +160,10 @@
 					</resources>
 				</configuration>
 			</plugin>
+<<<<<<< HEAD
 	    </plugins>
+=======
+		</plugins>
+>>>>>>> 0a3c5ef07d8617d134322f319caf35e11d6883cc
 	</build>
 </project>
