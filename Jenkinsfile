@@ -8,15 +8,6 @@ pipeline {
 					sh 'mvn clean compile'
 				}
 			}
-		}
-		
-		stage ('Test Stage') {
-			steps {
-				withMaven(maven: 'localMaven') {
-					sh 'mvn test'
-				}
-			}
-		}
-		
+		}		
 	}
 }
