@@ -16,13 +16,11 @@ pipeline {
 				}
 			}
 		}
-		
-		stage ('Deployment Stage') {
-			steps {
-				withMaven(maven: 'localMaven') {
-					sh 'mvn deploy'
-				}
-			}
-		}
+		post {
+        		always {
+            			archive "target/**/*"
+            			junit 'target/surefire-reports/*.xml'
+        		}
+   		}
 	}
 }
