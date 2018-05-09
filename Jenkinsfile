@@ -34,4 +34,8 @@ pipeline {
             		junit 'target/surefire-reports/*.xml'
         	}
    	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2399b3c4986b2e29fdf46401252691b1deebe61a
