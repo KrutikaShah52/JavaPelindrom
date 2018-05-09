@@ -1,5 +1,6 @@
 pipeline {
 	agent any
+	def maven = tool 'localMaven'
 	tools {
         jdk 'localJDK' 
     }
@@ -50,16 +51,7 @@ pipeline {
 		stage('SonarQube Build'){
 			steps{
 				withSonarQubeEnv('sonarqube') {
-      				sh 'mvn sonar:sonar' +
-      				'-f all/pom.xml ' +
-          			'-Dsonar.projectKey=com.huettermann:all:master ' +
-          			'-Dsonar.login= 'admin' ' +
-          			'-Dsonar.password= 'admin' ' +
-          			'-Dsonar.language=java ' +
-          			'-Dsonar.sources=. ' +
-          			'-Dsonar.tests=. ' +
-          			'-Dsonar.test.inclusions=**/*Test*/** ' +
-          			'-Dsonar.exclusions=**/*Test*/**'
+      				sh "${maven}/bin/mvn package sonar:sonar -Dsonar.host.url=http://localhost:9000"
     			}
     		} 
 		}
