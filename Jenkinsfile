@@ -51,9 +51,7 @@ pipeline {
 		stage('SonarQube Build'){
 			steps{
 				withSonarQubeEnv('sonarqube') {
-      				sh 'org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar' +
-    				'-Dsonar.login= 'admin' ' +
-          			'-Dsonar.password= 'admin' '
+      				sh 'mvn package sonar:sonar -Dsonar.host.url=http://localhost:9000'
     			}
     		} 
 		}
