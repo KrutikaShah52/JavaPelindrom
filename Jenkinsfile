@@ -50,7 +50,7 @@ pipeline {
 		stage('SonarQube Build'){
 			steps{
 				withSonarQubeEnv('sonarqube') {
-      				sh 'mvn clean package sonar:sonar' +
+      				sh 'mvn sonar:sonar' +
       				'-f all/pom.xml ' +
           			'-Dsonar.projectKey=com.huettermann:all:master ' +
           			'-Dsonar.login= 'admin' ' +
