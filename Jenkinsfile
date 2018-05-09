@@ -1,8 +1,8 @@
 pipeline {
 	agent any
-	def maven = tool 'localMaven'
 	tools {
         jdk 'localJDK' 
+        maven 'localMaven'
     }
 	stages {
 		stage ('Code Compiler'){
