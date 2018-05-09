@@ -47,14 +47,6 @@ pipeline {
 				])
 			}
 		}
-		
-		stage('SonarQube Build'){
-			steps{
-				withSonarQubeEnv('sonarqube') {
-      				sh 'mvn package sonar:sonar'
-    			}
-    		} 
-		}
 	}
 	
 	post {
@@ -62,6 +54,15 @@ pipeline {
       		archive "target/**/*"
         	junit 'target/surefire-reports/*.xml'
        	}
+   	}
+   	
+   	post {
+   		always {
+   			junit 'target/surefire-reports/*.xml'
+   			withMaven(maven: 'localMaven') {
+            	sh 'mvn package sonar:sonar -Dsonar.login= 'admin' -Dsonar.password= 'admin' '
+            }
+   		}
    	}
 }
 
