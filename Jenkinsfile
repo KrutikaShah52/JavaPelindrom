@@ -34,7 +34,7 @@ pipeline {
 				step([$class: 'CoberturaPublisher', 
 						autoUpdateHealth: false, 
 						autoUpdateStability: false, 
-						coberturaReportFile: 'fdsfsdfds', 
+						coberturaReportFile: '**/target/site/cobertura/coverage.xml', 
 						failUnhealthy: false, 
 						failUnstable: false, 
 						maxNumberOfBuilds: 0, 
