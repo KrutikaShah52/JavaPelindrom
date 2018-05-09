@@ -60,7 +60,7 @@ pipeline {
    		always {
    			junit 'target/surefire-reports/*.xml'
    			withMaven(maven: 'localMaven') {
-            	sh 'mvn package sonar:sonar -Dsonar.login= 'admin' -Dsonar.password= 'admin' '
+            	sh 'mvn package sonar:sonar '
             }
    		}
    	}
