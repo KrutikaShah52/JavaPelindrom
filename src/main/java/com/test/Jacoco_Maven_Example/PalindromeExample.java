@@ -13,6 +13,11 @@ public class PalindromeExample {
 	        System.out.println("Else condition execute.......");
 	        return (firstChar == lastChar) && isPalindrome(mid);
 	    }
-	}
+	}	
 	
+	public void lengthof(String inputString) {
+		if (inputString.length() == 1) {
+	    	System.out.println("Length is not applicable");
+	    }
+	}
 }

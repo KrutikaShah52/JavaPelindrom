@@ -9,7 +9,6 @@ pipeline {
 				}
 			}
 		}
-		
 		stage ('Test Stage') {
 			steps {
 				withMaven(maven: 'localMaven') {
@@ -17,13 +16,22 @@ pipeline {
 				}
 			}
 		}
-		
-		stage ('Deployment Stage') {
-			steps {
-				withMaven(maven: 'localMaven') {
-					sh 'mvn deploy'
-				}
+		stage('Jacoco Build'){
+			steps{
+				step([$class: 'JacocoPublisher', 
+      					execPattern: 'target/*.exec',
+      					classPattern: 'target/classes',
+      					sourcePattern: 'src/main/java',
+      					exclusionPattern: 'src/test*'
+				])
 			}
 		}
 	}
+	
+	post {
+        	always {
+          		archive "target/**/*"
+            		junit 'target/surefire-reports/*.xml'
+        	}
+   	}
 }
