@@ -47,6 +47,21 @@ pipeline {
 				])
 			}
 		}
+		
+		stage('SonarQube analysis') { 
+        	withSonarQubeEnv('sonarqube') { 
+	          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
+	          '-f all/pom.xml ' +
+	          '-Dsonar.projectKey=com.huettermann:all:master ' +
+	          '-Dsonar.login= 'admin ' +
+	          '-Dsonar.password= 'admin ' +
+	          '-Dsonar.language=java ' +
+	          '-Dsonar.sources=. ' +
+	          '-Dsonar.tests=. ' +
+	          '-Dsonar.test.inclusions=**/*Test*/** ' +
+	          '-Dsonar.exclusions=**/*Test*/**'
+        	}
+    	}
 	}
 	
 	post {
@@ -54,15 +69,6 @@ pipeline {
       		archive "target/**/*"
         	junit 'target/surefire-reports/*.xml'
        	}
-   	}
-   	
-   	post {
-   		always {
-   			junit 'target/surefire-reports/*.xml'
-   			withMaven(maven: 'localMaven') {
-            	sh 'mvn package sonar:sonar '
-            }
-   		}
    	}
 }
 
