@@ -50,10 +50,10 @@ pipeline {
 		
 		stage('SonarQube Build'){
 			steps{
-				withSonarQubeEnv('sonarqube') {
-      				sh 'mvn package sonar:sonar -Dsonar.host.url=http://localhost:9000' +
-      				'-Dsonar.login= 'admin' ' +
-          			'-Dsonar.password= 'admin' '
+				withSonarQubeEnv('sonarqube' +
+							'-Dsonar.login= 'admin' ' +
+          					'-Dsonar.password= 'admin' ') {
+      				sh 'mvn package sonar:sonar -Dsonar.host.url=http://localhost:9000'
     			}
     		} 
 		}
