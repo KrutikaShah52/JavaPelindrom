@@ -8,7 +8,7 @@ pipeline {
 		stage ('Code Compiler'){
 			steps {
 				withMaven(maven : 'localMaven'){
-					sh 'mvn clean install'
+					sh '${maven}/bin/mvn clean install'
 				}
 			}
 		}
