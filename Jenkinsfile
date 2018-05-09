@@ -51,8 +51,15 @@ pipeline {
 			steps{
 				withSonarQubeEnv('sonarqube') {
       				sh 'mvn clean package sonar:sonar' +
-      				'-Dsonar.login= 'admin' ' +
-          			'-Dsonar.password= 'admin' '
+      				'-f all/pom.xml ' +
+          			'-Dsonar.projectKey=com.huettermann:all:master ' +
+          			'-Dsonar.login= 'admin' ' +
+          			'-Dsonar.password= 'admin' ' +
+          			'-Dsonar.language=java ' +
+          			'-Dsonar.sources=. ' +
+          			'-Dsonar.tests=. ' +
+          			'-Dsonar.test.inclusions=**/*Test*/** ' +
+          			'-Dsonar.exclusions=**/*Test*/**'
     			}
     		} 
 		}
