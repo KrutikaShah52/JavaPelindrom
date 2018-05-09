@@ -53,14 +53,8 @@ pipeline {
 	        	withSonarQubeEnv('sonarqube') { 
 		          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
 		          '-f all/pom.xml ' +
-		          '-Dsonar.projectKey=com.huettermann:all:master ' +
 		          '-Dsonar.login=$SONAR_UN ' +
-		          '-Dsonar.password=$SONAR_PW ' +
-		          '-Dsonar.language=java ' +
-		          '-Dsonar.sources=. ' +
-		          '-Dsonar.tests=. ' +
-		          '-Dsonar.test.inclusions=**/*Test*/** ' +
-		          '-Dsonar.exclusions=**/*Test*/**'
+		          '-Dsonar.password=$SONAR_PW '
 	        	}
         	}
     	}
