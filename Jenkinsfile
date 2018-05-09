@@ -51,7 +51,7 @@ pipeline {
 		stage('SonarQube Build'){
 			steps{
 				withSonarQubeEnv('sonarqube') {
-      				sh "${maven}/bin/mvn package sonar:sonar -Dsonar.host.url=http://localhost:9000"
+      				sh 'mvn package sonar:sonar -Dsonar.host.url=http://localhost:9000'
     			}
     		} 
 		}
