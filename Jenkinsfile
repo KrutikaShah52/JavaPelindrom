@@ -53,8 +53,6 @@ pipeline {
 	          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
 	          '-f all/pom.xml ' +
 	          '-Dsonar.projectKey=com.huettermann:all:master ' +
-	          '-Dsonar.login= 'admin ' +
-	          '-Dsonar.password= 'admin ' +
 	          '-Dsonar.language=java ' +
 	          '-Dsonar.sources=. ' +
 	          '-Dsonar.tests=. ' +
