@@ -9,6 +9,7 @@ pipeline {
 				}
 			}
 		}
+		
 		stage ('Test Stage') {
 			steps {
 				withMaven(maven: 'localMaven') {
@@ -16,6 +17,7 @@ pipeline {
 				}
 			}
 		}
+		
 		stage('Jacoco Build'){
 			steps{
 				step([$class: 'JacocoPublisher', 
@@ -23,6 +25,22 @@ pipeline {
       					classPattern: 'target/classes',
       					sourcePattern: 'src/main/java',
       					exclusionPattern: 'src/test*'
+				])
+			}
+		}
+		
+		stage('Cobertura Build'){
+			steps{
+				step([$class: 'CoberturaPublisher', 
+						autoUpdateHealth: false, 
+						autoUpdateStability: false, 
+						coberturaReportFile: 'fdsfsdfds', 
+						failUnhealthy: false, 
+						failUnstable: false, 
+						maxNumberOfBuilds: 0, 
+						onlyStable: false, 
+						sourceEncoding: 'ASCII', 
+						zoomCoverageChart: false
 				])
 			}
 		}
