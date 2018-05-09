@@ -52,7 +52,7 @@ pipeline {
 			steps { 
 	        	withSonarQubeEnv('sonarqube') { 
 		          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
-		          '-f all/pom.xml ' +
+		          '-f pom.xml ' +
 		          '-Dsonar.login=$SONAR_UN ' +
 		          '-Dsonar.password=$SONAR_PW '
 	        	}
