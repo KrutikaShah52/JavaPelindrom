@@ -1,6 +1,8 @@
 pipeline {
 	agent any
-	
+	tools {
+        jdk 'localJDK' 
+    }
 	stages {
 		stage ('Code Compiler'){
 			steps {
