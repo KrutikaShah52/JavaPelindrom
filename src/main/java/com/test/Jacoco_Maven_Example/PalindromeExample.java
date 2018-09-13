@@ -1,4 +1,4 @@
-package com.test.Jacoco_Maven_Example;
+ package com.test.Jacoco_Maven_Example;
 
 public class PalindromeExample {
 

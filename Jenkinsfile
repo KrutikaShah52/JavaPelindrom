@@ -1,9 +1,9 @@
 pipeline {
 	agent any
 	tools {
-        jdk 'localJDK' 
-        maven 'localMaven'
-    }
+		jdk 'localJDK' 
+		maven 'localMaven'
+    	}
 	stages {
 		stage ('Code Compiler'){
 			steps {
@@ -50,20 +50,20 @@ pipeline {
 		
 		stage('SonarQube analysis') {
 			steps { 
-	        	withSonarQubeEnv('sonarqube') { 
-		          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
-		          '-f pom.xml ' +
-		          '-Dsonar.login=$SONAR_UN ' +
-		          '-Dsonar.password=$SONAR_PW '
-	        	}
-        	}
-    	}
+				withSonarQubeEnv('sonarqube') { 
+					  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
+					  '-f pom.xml ' +
+					  '-Dsonar.login=$SONAR_UN ' +
+					  '-Dsonar.password=$SONAR_PW '
+	        	        }
+        		}
+    		}
 	}
-	
+		
 	post {
-    	always {
-      		archive "target/**/*"
-        	junit 'target/surefire-reports/*.xml'
-       	}
+	    	always {
+	      		archive "target/**/*"
+			junit 'target/surefire-reports/*.xml'
+	       	}
    	}
 }

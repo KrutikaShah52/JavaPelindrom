@@ -1,0 +1,61 @@
+def VERSION = 'latest'
+
+pipeline {
+    agent any
+    triggers {
+        pollSCM('    *')
+    }
+    environment {
+        DOCKER_HOST='tcp://localhost:2375'
+        ENVIRONMENT='Devlopment'
+    }
+    stages {
+        stage('General') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Source Code Management') {
+            steps {
+                echo "Checkout Code"
+                def gitdata = checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: 					[[$class: 'RelativeTargetDirectory', relativeTargetDir: 'hmsgoogle_code'], [$class: 						'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'hmsgoogleapi']]]], submoduleCfg: [], 						userRemoteConfigs: [[credentialsId: '6327e8a3-b51d-44e6-a900-50965cfa5591', url: 						'git@spruce.arlo.com:ARLO/hmscloud.git']]])
+                echo "${gitdata}"
+                echo "Checkout Configurations"
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 				'RelativeTargetDirectory', relativeTargetDir: 'hmsgoogle_configurations'], [$class: 'SparseCheckoutPaths', 				sparseCheckoutPaths: [[path: 'HmsGoogle']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 				'6327e8a3-b51d-44e6-a900-50965cfa5591', url: 'git@spruce.arlo.com:ARLO/devops.git']]]) 
+            }
+        }
+        stage('PreBuild Steps') {
+            steps {
+                script {
+                    VERSION = sh(returnStdout: true, script: '''grep "docker.image.tag" hmsgoogle_code/hmsgoogleapi/hmsgoogleapi/pom.xml | cut -				f2 -d">" | cut -f1 -d"<" | head -n 1''')
+                    echo "VERSION PreBuild Step: ${VERSION}"
+                }
+            }
+        }
+        stage('Build') {
+            environment {
+                VERSION=sh(returnStdout: true,script:"echo ${VERSION}").trim()
+            }
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /var/lib/jenkins/.m2/:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2 --net="host"'
+                    reuseNode true
+                }        gitdata
+            }
+            steps {
+                sh 'mvn clean install docker:build -Duser.home=/var/maven -Dbuild.number="hmsgoogleapi"-echo ${VERSION}-${BUILD_NUMBER}-${GIT_COMMIT} -f hmsgoogle_code/hmsgoogleapi/pom.xml'
+            }
+        }
+        stage('Post-Buid Action') {
+            steps {
+                echo "Post Build Action" 
+            }
+        }
+    }
+    post {
+        success {
+            echo "JOB DONE SUCCESSFULLY"
+        } 
+    }
+}
