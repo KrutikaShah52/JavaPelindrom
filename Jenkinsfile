@@ -3,7 +3,6 @@ pipeline {
 	tools {
 		jdk 'localJDK' 
 		maven 'localMaven'
-		sonarqube 'sonarqube'
     	}
 	stages {
 		stage ('Code Compiler'){
