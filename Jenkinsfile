@@ -1,7 +1,7 @@
 pipeline {
 	agent {
 		node{
-			label 'Slave1'
+			label 'master'
 		}
 	}
 	tools {
@@ -48,15 +48,15 @@ pipeline {
 				])
 			}
 		}
-		stage('SonarQube analysis') {
-			steps { 
-				withSonarQubeEnv('sonarqube') { 
-					  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
-					  '-f pom.xml ' +
-					  '-Dsonar.login=$SONAR_UN ' +
-					  '-Dsonar.password=$SONAR_PW '
-	        	        }
-        		}
-    	}
+		// stage('SonarQube analysis') {
+		// 	steps { 
+		// 		withSonarQubeEnv('sonarqube') { 
+		// 			  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
+		// 			  '-f pom.xml ' +
+		// 			  '-Dsonar.login=$SONAR_UN ' +
+		// 			  '-Dsonar.password=$SONAR_PW '
+	    //     	        }
+        // 		}
+    	// }
 	}
 }
