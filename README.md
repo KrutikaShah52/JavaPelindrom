@@ -1,4 +1,5 @@
-# SonarQube-java-
+# Java + Mvn + Jacoco + Cobertura + Junit + SonarQube-
+
 Java project to generate SonarQube report
 
 Add plugin into the pom.xml
