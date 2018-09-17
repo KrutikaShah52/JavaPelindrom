@@ -54,7 +54,6 @@ pipeline {
 					  '-Dsonar.password=$SONAR_PW '
 	        	        }
         		}
-    		}
-	}
+    	}
 	}
 }
