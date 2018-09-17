@@ -3,6 +3,7 @@ pipeline {
 	tools {
 		jdk 'localJDK' 
 		maven 'localMaven'
+		sonarqube 'sonarqube'
     	}
 	stages {
 		stage ('Code Compiler'){
@@ -44,5 +45,16 @@ pipeline {
 				])
 			}
 		}
+		stage('SonarQube analysis') {
+			steps { 
+				withSonarQubeEnv('sonarqube') { 
+					  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
+					  '-f pom.xml ' +
+					  '-Dsonar.login=$SONAR_UN ' +
+					  '-Dsonar.password=$SONAR_PW '
+	        	        }
+        		}
+    		}
+	}
 	}
 }
