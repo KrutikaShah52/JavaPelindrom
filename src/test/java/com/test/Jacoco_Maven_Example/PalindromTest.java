@@ -22,7 +22,7 @@ public class PalindromTest {
 //	@Test
 //	public void whenPalinrome_thenAccept(){
 //	    PalindromeExample palindromeTester = new PalindromeExample();
-//	    assertEquals(true, palindromeTester.isPalindrome("aba"));
+//	    assertEquals(true, palindromeTester.isPalindrome("aba"));	
 //	}
 	
 //	@Test
