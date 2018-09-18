@@ -22,10 +22,10 @@ public class PalindromeExample {
 	}
 	public void sayhi(){
 		if(1!=1){
-			System.out.println("Hello for function")		
+			System.out.println("Hello for function");		
 		}
 		else{
-			System.out.println("Hi in else loop")
+			System.out.println("Hi in else loop");
 		}
 	}
 }
