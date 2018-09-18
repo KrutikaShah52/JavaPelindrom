@@ -20,12 +20,4 @@ public class PalindromeExample {
 	    	System.out.println("Length is not applicable");
 	    }
 	}
-	public void sayhi(){
-		if(1!=1){
-			System.out.println("Hello for function");		
-		}
-		else{
-			System.out.println("Hi in else loop");
-		}
-	}
 }
