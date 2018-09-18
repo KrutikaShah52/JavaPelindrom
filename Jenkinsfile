@@ -48,26 +48,28 @@ pipeline {
 				])
 			}
 		}
-		steps {
-			script {
-				withSonarQubeEnv('sonarqube') {
-					sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
-					'-f pom.xml ' +
-					'-Dsonar.login=$SONAR_UN ' +
-					'-Dsonar.password=$SONAR_PW '
-					'-Duser.home=/var/maven ' +
-					'-Dsonar.sources=src/main ' +
-					'-Dsonar.tests=src/test ' +
-					'-Dsonar.java.binaries=target/classes '
-					'-Dsonar.test.inclusions=**/*Test*/* ' +
-					'-Dsonar.exclusions=**/*Test*/* '
-					'-Dsonar.java.coveragePlugin=jacoco'
-					'-Dsonar.jacoco.reportMissing.force.zero=true'
-					'-Dsonar.jacoco.reportPaths=target/jacoco.exec'
-					'-Dsonar.junit.reportsPaths=target/surefire-reports'
+		stage('SonarQube Analysis'){
+			steps {
+				script {
+					withSonarQubeEnv('sonarqube') {
+						sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar ' + 
+						'-f pom.xml ' +
+						'-Dsonar.login=$SONAR_UN ' +
+						'-Dsonar.password=$SONAR_PW '
+						'-Duser.home=/var/maven ' +
+						'-Dsonar.sources=src/main ' +
+						'-Dsonar.tests=src/test ' +
+						'-Dsonar.java.binaries=target/classes '
+						'-Dsonar.test.inclusions=**/*Test*/* ' +
+						'-Dsonar.exclusions=**/*Test*/* '
+						'-Dsonar.java.coveragePlugin=jacoco'
+						'-Dsonar.jacoco.reportMissing.force.zero=true'
+						'-Dsonar.jacoco.reportPaths=target/jacoco.exec'
+						'-Dsonar.junit.reportsPaths=target/surefire-reports'
+					}
 				}
 			}
-        }
+		}
 		// stage('SonarQube analysis') {
 		// 	steps { 
 		// 		withSonarQubeEnv('sonarqube') { 
